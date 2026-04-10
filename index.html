@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Task Manager</h1>
+
+      <!-- FORM -->
+      <form id="task-form" class="form">
+        <input
+          type="text"
+          id="task-input"
+          placeholder="Masukkan task..."
+          required
+        />
+        <button type="submit">Tambah</button>
+      </form>
+
+      <!-- FILTER -->
+      <div class="filters">
+        <button data-filter="all" class="active">Semua</button>
+        <button data-filter="completed">Selesai</button>
+        <button data-filter="pending">Belum</button>
+      </div>
+
+      <!-- STATISTIK -->
+      <div class="stats">
+        <span id="total-task">Total: 0</span>
+        <span id="completed-task">Selesai: 0</span>
+        <span id="pending-task">Belum: 0</span>
+      </div>
+
+      <!-- LIST -->
+      <ul id="task-list" class="task-list"></ul>
+    </div>
+
+    <script type="module" src="js/API.js"></script>
+  </body>
+</html>

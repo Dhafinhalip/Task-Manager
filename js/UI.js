@@ -5,8 +5,8 @@ export class UI {
     tasks.forEach((t) => {
       list.innerHTML = `
         <li data-id="${t.id}">
-          <span>${t.title}</span>
-          <span>${t.status}</span>
+         <input type="checkbox"/>
+         <label for="item1">${t.title}</label><br />
         </li>
       `;
     });

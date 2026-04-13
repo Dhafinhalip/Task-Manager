@@ -24,4 +24,8 @@ export class UI {
     complete.textContent = `Selesai: ${completeCount}`;
     pending.textContent = `Belum: ${tasks.length - completeCount}`;
   }
+
+  static clearForm() {
+    document.getElementById("task-form").reset();
+  }
 }

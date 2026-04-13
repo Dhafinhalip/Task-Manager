@@ -11,4 +11,17 @@ export class UI {
       `;
     });
   }
+
+  static renderStatistic(tasks) {
+    const totalTask = document.getElementById("total-task");
+    const complete = document.getElementById("completed-task");
+    const pending = document.getElementById("pending-task");
+
+    //Filter Complete And Pending
+    const completeCount = tasks.filter((c) => c.status === "selesai").length;
+
+    totalTask.textContent = `Total: ${tasks.length}`;
+    complete.textContent = `Selesai: ${completeCount}`;
+    pending.textContent = `Belum: ${tasks.length - completeCount}`;
+  }
 }

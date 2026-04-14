@@ -12,7 +12,7 @@ export async function API() {
         return {
           id: value.id,
           title: value.title,
-          status: "Belum Selesai",
+          status: value.completed ? "completed" : "pending",
           tanggal: new Date().toLocaleDateString("id-ID"),
         };
       });

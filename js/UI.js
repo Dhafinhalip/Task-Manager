@@ -3,7 +3,7 @@ export class UI {
     const list = document.querySelector(".task-list");
     list.innerHTML = "";
     tasks.forEach((t) => {
-      list.innerHTML = `
+      list.innerHTML += `
         <li data-id="${t.id}">
          <input type="checkbox"/>
          <label for="item1">${t.title}</label><br />
@@ -27,5 +27,25 @@ export class UI {
 
   static clearForm() {
     document.getElementById("task-form").reset();
+  }
+
+  static filterTask(tasks) {
+    this.renderListTask(tasks);
+    const completeBtn = document.querySelector(
+      "button[data-filter = 'completed']",
+    );
+    const pendingBtn = document.querySelector(
+      "button[data-filter = 'pending']",
+    );
+
+    completeBtn.addEventListener("click", function () {
+      const filterCompleted = tasks.filter((c) => c.status === "selesai");
+      UI.renderListTask(filterCompleted);
+    });
+
+    pendingBtn.addEventListener("click", function () {
+      const filterPending = tasks.filter((c) => c.status === "Belum Selesai");
+      UI.renderListTask(filterPending);
+    });
   }
 }

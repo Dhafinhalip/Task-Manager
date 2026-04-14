@@ -18,13 +18,18 @@ export class Storage {
     this.saveTask(undelete);
   }
 
-  static updateStatusTask(id) {
+  static toggleStatusTask(id) {
     const tasks = this.getTask();
-    const index = tasks.findIndex((item) => item.id === id);
 
-    if (index === -1) return;
-
-    tasks[index].status = "Selesai";
-    this.saveTask(tasks);
+    const update = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          status: task.status === "completed" ? "pending" : "completed",
+        };
+      }
+      return task;
+    });
+    this.saveTask(update);
   }
 }

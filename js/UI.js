@@ -4,9 +4,14 @@ export class UI {
     list.innerHTML = "";
     tasks.forEach((t) => {
       list.innerHTML += `
-        <li data-id="${t.id}">
-         <input type="checkbox"/>
-         <label for="item1">${t.title}</label><br />
+        <li data-id="${t.id}" class="${t.status === "completed" ? "completed" : ""}">
+          <span>${t.title}</span>
+          <div class="actions">
+            <button class="btn btn-toggle">
+              ${t.status === "completed" ? "Undo" : "Done"}
+            </button>
+            <button class="btn btn-delete">Hapus</button>
+          </div>
         </li>
       `;
     });
@@ -29,23 +34,15 @@ export class UI {
     document.getElementById("task-form").reset();
   }
 
-  static filterTask(tasks) {
-    this.renderListTask(tasks);
-    const completeBtn = document.querySelector(
-      "button[data-filter = 'completed']",
-    );
-    const pendingBtn = document.querySelector(
-      "button[data-filter = 'pending']",
-    );
+  static filterTask(tasks, type) {
+    if (type === "completed") {
+      return tasks.filter((c) => c.status === "completed");
+    }
 
-    completeBtn.addEventListener("click", function () {
-      const filterCompleted = tasks.filter((c) => c.status === "selesai");
-      UI.renderListTask(filterCompleted);
-    });
+    if (type === "pending") {
+      return tasks.filter((c) => c.status === "pending");
+    }
 
-    pendingBtn.addEventListener("click", function () {
-      const filterPending = tasks.filter((c) => c.status === "Belum Selesai");
-      UI.renderListTask(filterPending);
-    });
+    return tasks;
   }
 }

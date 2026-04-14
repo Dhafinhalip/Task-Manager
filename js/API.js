@@ -20,5 +20,6 @@ export async function API() {
     return mappingData;
   } catch (error) {
     console.error(error);
+    return [];
   }
 }
